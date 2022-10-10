@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 8080;
+const userRouter = require("./routes/user");
 const db = require("./db");
 
 app.use(express.urlencoded({ extended: true }));
@@ -12,6 +13,8 @@ db();
 app.get("/", (req, res) => {
   res.send("Willkommen zu unserem Abschlussprojekt");
 });
+// GET ALL Users && CREATE USER
+app.use("/user", userRouter);
 
 // LISTENING
 app.listen(PORT, () => {
