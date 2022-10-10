@@ -9,6 +9,7 @@ async function connect() {
   } catch (error) {
     console.error(error);
   }
+  // auskommentiert, bricht ansonsten immer sofort die Verbindung zur DB
   // process.exit();
 }
 
