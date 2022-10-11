@@ -3,6 +3,7 @@ const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 8080;
 const userRouter = require("./routes/user");
+const teamRouter = require("./routes/team");
 const db = require("./db");
 
 app.use(express.urlencoded({ extended: true }));
@@ -16,6 +17,8 @@ app.get("/", (req, res) => {
 // GET ALL Users && CREATE USER
 app.use("/user", userRouter);
 
+// GET ALL TEAMS && CREATE TEAM
+app.use("/team", teamRouter);
 // LISTENING
 app.listen(PORT, () => {
   console.log(`Server is running on Port: ${PORT}`);
