@@ -24,7 +24,7 @@ const createEvent = async (req, res) => {
   console.log(req.body);
   try {
     const found = await Event.findOne({ eventName });
-    if (found) return res.status(400).send("Team Name already exists");
+    if (found) return res.status(400).send("Event Name already exists");
     const newEvent = await Event.create({
       eventName,
       date,
