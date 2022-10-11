@@ -24,7 +24,7 @@ const createTeam = async (req, res) => {
   console.log(req.body);
   try {
     const found = await Team.findOne({ team });
-    if (found) return res.status(400).send("TeamName already exists");
+    if (found) return res.status(400).send("Team Name already exists");
     const newTeam = await Team.create({
       team,
       sport,
