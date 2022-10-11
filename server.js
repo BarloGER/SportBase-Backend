@@ -4,6 +4,7 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 const userRouter = require("./routes/user");
 const teamRouter = require("./routes/team");
+const eventRouter = require("./routes/event");
 const db = require("./db");
 
 app.use(express.urlencoded({ extended: true }));
@@ -19,6 +20,8 @@ app.use("/user", userRouter);
 
 // GET ALL TEAMS && CREATE TEAM
 app.use("/team", teamRouter);
+
+app.use("/event", eventRouter);
 // LISTENING
 app.listen(PORT, () => {
   console.log(`Server is running on Port: ${PORT}`);
