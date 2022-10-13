@@ -1,3 +1,6 @@
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
 // ALL User
 const User = require("../models/User");
 const getAllUser = async (req, res) => {
@@ -36,10 +39,11 @@ const createUser = async (req, res) => {
   try {
     const found = await User.findOne({ email });
     if (found) return res.status(400).send("User already exists");
+    const hash = await bcrypt.hash(password, 5);
     const newUser = await User.create({
       userName,
       email,
-      password,
+      password: hash,
       createdAt,
       height,
       age,
@@ -48,7 +52,8 @@ const createUser = async (req, res) => {
       number,
       inactive,
     });
-
+    const token = jwt.sign({ newUser }, process.env.JWT_SECRET);
+    res.json({ token });
     res.status(201).json(newUser);
     console.log(newUser);
   } catch (err) {
