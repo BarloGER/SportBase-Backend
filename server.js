@@ -7,12 +7,11 @@ const PORT = process.env.PORT || 8080;
 const userRouter = require("./routes/user");
 const teamRouter = require("./routes/team");
 const eventRouter = require("./routes/event");
-//const loginRouter = require("./routes/login");
 const db = require("./db");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors({ origin: "*" }));
+app.use(cors());
 db();
 // STARTSEITE
 app.get("/", (req, res) => {
