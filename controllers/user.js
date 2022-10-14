@@ -15,9 +15,12 @@ const getAllUser = async (req, res) => {
 // CREATE USER
 const createUser = async (req, res) => {
   const {
-    userName,
+    firstname,
+    lastname,
+    username,
     email,
     password,
+    terms,
     createdAt,
     height,
     age,
@@ -32,9 +35,12 @@ const createUser = async (req, res) => {
     if (found) return res.status(400).send("User already exists");
     const hash = await bcrypt.hash(password, 5);
     const newUser = await User.create({
-      userName,
+      firstname,
+      lastname,
+      username,
       email,
       password: hash,
+      terms,
       createdAt,
       height,
       age,
@@ -54,21 +60,16 @@ const createUser = async (req, res) => {
 
 // User BY MAIL && PW
 const getSingleUser = async (req, res) => {
-  const { email, password } = req.body;
-  console.log(req.body);
-  const user = await User.findOne({ email }).select("+password");
-  console.log(user);
-  const pass = await bcrypt.compare(req.body.password, password);
-  console.log(pass);
-
   try {
-    if (user && pass) {
-      // BRICHT NACH RES.SEND IMMER AB
-      //res.send("User gefunden");
-    } else {
-      //res.send("User nicht vorhanden. Bitte erst registrieren");
-    }
-    const token = jwt.sign({ user }, process.env.JWT_SECRET);
+    const { email, password } = req.body;
+    console.log(req.body);
+    const user = await User.findOne({ email }).select("+password");
+    if (!user) return res.send("Bitte zuerst registrieren");
+    console.log(user);
+    const pass = await bcrypt.compare(req.body.password, user.password);
+    if (!pass) return res.send("passwort ist falsch");
+    console.log(pass);
+    const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
     res.json({ token });
     //res.status(200).json(user);
   } catch (err) {
