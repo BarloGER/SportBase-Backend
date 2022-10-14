@@ -1,11 +1,10 @@
 const express = require("express");
-const verifyToken = require("../midleware/auth");
+const jwtToken = require("../midleware/auth");
 //controllers
 const {
   getAllUser,
   getSingleUser,
   createUser,
-  loginUser,
   loginUser,
 } = require("../controllers/user");
 
@@ -15,5 +14,5 @@ userRouter.route("/").get(getAllUser).post(createUser);
 // GET SINGLE User BY MAIL && PW
 userRouter.route("/login").post(loginUser);
 
-userRouter.route("/checkToken").post(verifyToken, getSingleUser);
+userRouter.route("/checkToken").post(jwtToken, getSingleUser);
 module.exports = userRouter;

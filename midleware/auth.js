@@ -1,5 +1,5 @@
 // MIDDLEWARE FOR TOKEN AUTH
-const jwtVerify = async (req, res) => {
+const jwtVerify = async (req, res, next) => {
   try {
     const {
       headers: { authorization },
@@ -9,7 +9,7 @@ const jwtVerify = async (req, res) => {
     req.userId = _id;
     next();
   } catch (err) {
-    res.send(err);
+    res.send(err.message);
   }
 };
-module.exports = { jwtVerify };
+module.exports = jwtVerify;
