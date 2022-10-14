@@ -7,8 +7,9 @@ const jwtVerify = async (req, res) => {
     if (!authorization) throw new Error("Please login");
     const { _id } = jwt.verify(authorization, process.env.JWT_SECRET);
     req.userId = _id;
-    next();
   } catch (err) {
     res.send(err);
   }
+  next();
 };
+module.exports = { jwtVerify };
