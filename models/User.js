@@ -2,9 +2,12 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const User = new Schema({
-  userName: { type: String, required: true },
+  firstname: { type: String, required: true },
+  lastname: { type: String, required: true },
+  username: { type: String, required: true },
   email: { type: String, required: true },
   password: { type: String, required: true, select: false },
+  terms: { type: Boolean, required: true },
   height: { type: Number, default: null },
   coach: { type: Boolean, default: false },
   player: { type: Boolean, default: true },
