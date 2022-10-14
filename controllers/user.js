@@ -61,7 +61,7 @@ const createUser = async (req, res) => {
 // User BY MAIL && PW
 const loginUser = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email } = req.body;
     console.log(req.body);
     const user = await User.findOne({ email }).select("+password");
     if (!user) return res.send("Bitte zuerst registrieren");
@@ -81,12 +81,9 @@ const getSingleUser = async (req, res) => {
   try {
     const { userId } = req;
 
-    const user = await User.findById({ userId });
+    const user = await User.findById(userId);
     if (!user) return res.send("User not found");
-    console.log(pass);
-    res.json(user);
-
-    //res.status(200).json(user);
+    return res.json(user);
   } catch (err) {
     res.status(500).send(err.message);
   }
