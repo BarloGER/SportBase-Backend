@@ -34,7 +34,7 @@ const createUser = async (req, res) => {
     const found = await User.findOne({ email });
     if (found) return res.status(400).send("User already exists");
     const hash = await bcrypt.hash(password, 5);
-    const newUser = await User.create({
+    const { _id } = await User.create({
       firstname,
       lastname,
       username,
@@ -49,9 +49,9 @@ const createUser = async (req, res) => {
       number,
       inactive,
     });
-    const token = jwt.sign({ newUser }, process.env.JWT_SECRET);
+    const token = jwt.sign({ _id }, process.env.JWT_SECRET);
     //res.json({ token });
-    res.status(201).json(token);
+    return res.status(201).json(token);
     console.log(newUser);
   } catch (err) {
     res.status(500).send(err.message);
@@ -67,10 +67,12 @@ const loginUser = async (req, res) => {
     if (!user) return res.send("Bitte zuerst registrieren");
     console.log(user);
     const pass = await bcrypt.compare(req.body.password, user.password);
-    if (!pass) return res.send("passwort ist falsch");
     console.log(pass);
+    if (!pass) return res.send("passwort ist falsch");
     const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
-    res.json({ token });
+    console.log(token);
+    return res.json({ token });
+
     //res.status(200).json(user);
   } catch (err) {
     res.status(500).send(err.message);
