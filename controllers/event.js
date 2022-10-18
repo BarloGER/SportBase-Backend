@@ -20,14 +20,15 @@ const getSingleEvent = async (req, res) => {
 };
 // CREATE EVENT
 const createEvent = async (req, res) => {
-  const { eventName, date, createdAt, oppenent } = req.body;
+  const { title, startDate, endDate, createdAt, oppenent } = req.body;
   console.log(req.body);
   try {
-    const found = await Event.findOne({ eventName });
+    const found = await Event.findOne({ title });
     if (found) return res.status(400).send("Event Name already exists");
     const newEvent = await Event.create({
-      eventName,
-      date,
+      title,
+      startDate,
+      endDate,
       createdAt,
       oppenent,
     });
