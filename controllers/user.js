@@ -90,4 +90,5 @@ const getSingleUser = async (req, res) => {
     res.status(500).send(err.message);
   }
 };
+
 module.exports = { getAllUser, getSingleUser, createUser, loginUser };
