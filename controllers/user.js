@@ -50,9 +50,7 @@ const createUser = async (req, res) => {
       inactive,
     });
     const token = jwt.sign({ _id }, process.env.JWT_SECRET);
-    //res.json({ token });
     return res.status(201).json(token);
-    console.log(newUser);
   } catch (err) {
     res.status(500).send(err.message);
   }
@@ -62,17 +60,12 @@ const createUser = async (req, res) => {
 const loginUser = async (req, res) => {
   try {
     const { email } = req.body;
-    console.log(req.body);
     const user = await User.findOne({ email }).select("+password");
     if (!user) return res.send("Bitte zuerst registrieren");
-    console.log(user);
     const pass = await bcrypt.compare(req.body.password, user.password);
-    console.log(pass);
     if (!pass) return res.send("passwort ist falsch");
     const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
-    console.log(token);
     return res.json({ token });
-
     //res.status(200).json(user);
   } catch (err) {
     res.status(500).send(err.message);
@@ -82,7 +75,6 @@ const loginUser = async (req, res) => {
 const getSingleUser = async (req, res) => {
   try {
     const { userId } = req;
-
     const user = await User.findById(userId);
     if (!user) return res.send("User not found");
     return res.json(user);

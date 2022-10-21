@@ -1,3 +1,4 @@
+const jwt = require("jsonwebtoken");
 // MIDDLEWARE FOR TOKEN AUTH
 const jwtVerify = async (req, res, next) => {
   try {
