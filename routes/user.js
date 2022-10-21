@@ -14,5 +14,5 @@ userRouter.route("/").get(getAllUser).post(createUser);
 // GET SINGLE User BY MAIL && PW
 userRouter.route("/login").post(loginUser);
 
-userRouter.route("/checkToken").post(jwtToken, getSingleUser);
+userRouter.route("/checkToken").get(jwtToken, getSingleUser);
 module.exports = userRouter;
