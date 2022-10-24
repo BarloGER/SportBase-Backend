@@ -6,7 +6,7 @@ const Event = new Schema({
   startDate: { type: Date, required: true },
   endDate: { type: Date, required: true },
   createdAt: { type: Date, default: Date.now },
-  opponent: { type: String, default: "Looser" },
+  opponent: { type: String },
   activePlayers: { type: Array },
   reservePlayers: { type: Array },
   lineUp: { type: String },
