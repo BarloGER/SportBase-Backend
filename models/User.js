@@ -19,5 +19,6 @@ const User = new Schema({
   number: { type: Number, deafult: null },
   inactive: { type: Boolean, default: false },
   createdAt: { type: Date, default: Date.now },
+  aboutMe: { type: String, default: "Teile uns mehr von dir mit." },
 });
 module.exports = mongoose.model("User", User);
