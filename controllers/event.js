@@ -20,6 +20,7 @@ const getSingleEvent = async (req, res) => {
 };
 // CREATE EVENT
 const createEvent = async (req, res) => {
+  console.log(req);
   const {
     title,
     startDate,
