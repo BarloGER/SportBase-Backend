@@ -28,6 +28,7 @@ const createUser = async (req, res) => {
     position,
     number,
     inactive,
+    aboutMe,
   } = req.body;
   console.log(req.body);
   try {
@@ -48,6 +49,7 @@ const createUser = async (req, res) => {
       position,
       number,
       inactive,
+      aboutMe,
     });
     const token = jwt.sign({ _id }, process.env.JWT_SECRET);
     return res.status(201).json(token);
