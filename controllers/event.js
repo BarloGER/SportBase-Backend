@@ -20,7 +20,16 @@ const getSingleEvent = async (req, res) => {
 };
 // CREATE EVENT
 const createEvent = async (req, res) => {
-  const { title, startDate, endDate, createdAt, oppenent } = req.body;
+  const {
+    title,
+    startDate,
+    endDate,
+    createdAt,
+    oppenent,
+    activePlayers,
+    reservePlayers,
+    lineUp,
+  } = req.body;
   console.log(req.body);
   try {
     const found = await Event.findOne({ title });
@@ -31,6 +40,9 @@ const createEvent = async (req, res) => {
       endDate,
       createdAt,
       oppenent,
+      activePlayers,
+      reservePlayers,
+      lineUp,
     });
 
     res.status(201).json(newEvent);
