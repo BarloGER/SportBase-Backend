@@ -32,7 +32,7 @@ const createEvent = async (req, res) => {
   } = req.body;
   console.log(req.body);
   try {
-    const found = await Event.findOne({ title });
+    const found = await Event.findOne({ startDate });
     if (found) return res.status(400).send("Event Name already exists");
     const newEvent = await Event.create({
       title,
