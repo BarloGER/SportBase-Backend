@@ -28,7 +28,6 @@ const createTeam = async (req, res) => {
     const newTeam = await Team.create({
       team,
       sport,
-      memberCount,
       logoUrl,
       isActive,
       createdAt,
