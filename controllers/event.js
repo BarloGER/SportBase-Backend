@@ -10,7 +10,9 @@ const getAllEvents = async (req, res) => {
 };
 // EVENT BY ID
 const getSingleEvent = async (req, res) => {
-  const { id } = Number(req.params);
+  console.log(req);
+  const { id } = req.params;
+  console.log(typeof id);
   try {
     const event = await Event.findById(id);
     res.status(200).json(event);
