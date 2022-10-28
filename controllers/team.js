@@ -29,6 +29,8 @@ const createTeam = async (req, res) => {
       team,
       sport,
       trainer,
+      memberCount,
+      member,
       logoUrl,
       isActive,
     });
