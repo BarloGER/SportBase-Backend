@@ -20,7 +20,7 @@ const getSingleTeam = async (req, res) => {
 };
 // CREATE Team
 const createTeam = async (req, res) => {
-  const { team, sport, trainer, logoUrl } = req.body;
+  const { team, sport, trainer, logoUrl, isActive } = req.body;
   console.log(req.body);
   try {
     const found = await Team.findOne({ team });
@@ -31,7 +31,6 @@ const createTeam = async (req, res) => {
       trainer,
       logoUrl,
       isActive,
-      createdAt,
     });
 
     res.status(201).json(newTeam);
