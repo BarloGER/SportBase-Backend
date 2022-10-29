@@ -26,6 +26,7 @@ const createEvent = async (req, res) => {
   const {
     title,
     startDate,
+    location,
     endDate,
     createdAt,
     opponent,
@@ -40,6 +41,7 @@ const createEvent = async (req, res) => {
     const newEvent = await Event.create({
       title,
       startDate,
+      location,
       endDate,
       createdAt,
       opponent,
