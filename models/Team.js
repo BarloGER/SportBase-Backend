@@ -4,9 +4,9 @@ const { Schema } = mongoose;
 const Team = new Schema({
   team: { type: String, required: true },
   sport: { type: String, required: true },
-  trainer: { type: Object, required: true },
-  memberCount: { type: Number, required: true },
-  member: { type: Array, required: true },
+  trainer: { type: String },
+  memberCount: { type: Number },
+  member: { type: Array },
   isActive: { type: Boolean, default: true },
   logoUrl: { type: String },
 });
