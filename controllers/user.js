@@ -29,6 +29,7 @@ const createUser = async (req, res) => {
     number,
     inactive,
     aboutMe,
+    userImage,
   } = req.body;
   console.log(req.body);
   try {
@@ -50,6 +51,7 @@ const createUser = async (req, res) => {
       number,
       inactive,
       aboutMe,
+      userImage,
     });
     const token = jwt.sign({ _id }, process.env.JWT_SECRET);
     return res.status(201).json(token);
@@ -82,6 +84,16 @@ const getSingleUser = async (req, res) => {
     return res.json(user);
   } catch (err) {
     res.status(500).send(err.message);
+  }
+};
+// DELETE USER
+const deleteUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await User.findByIdAndDelete(id);
+    res.status(200).send(`${user.firstName} ${user.lastName} wurde gelöscht.`);
+  } catch (error) {
+    res.status(500).send(error.message);
   }
 };
 

@@ -6,6 +6,7 @@ const {
   getSingleUser,
   createUser,
   loginUser,
+  deleteUser,
 } = require("../controllers/user");
 
 const userRouter = express.Router();
@@ -13,6 +14,9 @@ const userRouter = express.Router();
 userRouter.route("/").get(getAllUser).post(createUser);
 // GET SINGLE User BY MAIL && PW
 userRouter.route("/login").post(loginUser);
+
+// DELTE USER
+userRouter.route("/:id").delete(deleteUser);
 
 userRouter.route("/checkToken").get(jwtToken, getSingleUser);
 module.exports = userRouter;

@@ -32,6 +32,7 @@ const createEvent = async (req, res) => {
     activePlayers,
     reservePlayers,
     lineUp,
+    eventImage,
   } = req.body;
   console.log(req.body);
   try {
@@ -46,6 +47,7 @@ const createEvent = async (req, res) => {
       activePlayers,
       reservePlayers,
       lineUp,
+      eventImage,
     });
 
     res.status(201).json(newEvent);
