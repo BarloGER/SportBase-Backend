@@ -10,5 +10,6 @@ const Event = new Schema({
   activePlayers: { type: Array },
   reservePlayers: { type: Array },
   lineUp: { type: String },
+  eventImage: { type: String },
 });
 module.exports = mongoose.model("Event", Event);
