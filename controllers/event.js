@@ -85,4 +85,21 @@ const updateEvent = async (req, res) => {
     res.status(500).send(error.message);
   }
 };
-module.exports = { getAllEvents, getSingleEvent, createEvent, updateEvent };
+
+// DELETE Event
+const deleteEvent = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const event = await Event.findByIdAndDelete(id);
+    res.status(200).send("Event wurde erfolgreich gelöscht");
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+module.exports = {
+  getAllEvents,
+  getSingleEvent,
+  createEvent,
+  updateEvent,
+  deleteEvent,
+};
