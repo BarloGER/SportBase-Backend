@@ -86,15 +86,21 @@ const getSingleUser = async (req, res) => {
     res.status(500).send(err.message);
   }
 };
-// // DELETE USER
-// const deleteUser = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const user = await User.findByIdAndDelete(id);
-//     res.status(200).send(`${user.firstName} ${user.lastName} wurde gelöscht.`);
-//   } catch (error) {
-//     res.status(500).send(error.message);
-//   }
-// };
+// DELETE USER
+const deleteUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await User.findByIdAndDelete(id);
+    res.status(200).send("User wurde erfolgreich gelöscht");
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
 
-module.exports = { getAllUser, getSingleUser, createUser, loginUser };
+module.exports = {
+  getAllUser,
+  getSingleUser,
+  createUser,
+  loginUser,
+  deleteUser,
+};
