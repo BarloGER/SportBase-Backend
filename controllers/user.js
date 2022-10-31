@@ -97,10 +97,55 @@ const deleteUser = async (req, res) => {
   }
 };
 
+const updateUser = async (req, res) => {
+  console.log("Req Body", req.body);
+  console.log("req.params", req.params);
+  try {
+    const { id } = req.params;
+    const {
+      firstname,
+      lastname,
+      username,
+      email,
+      terms,
+      createdAt,
+      height,
+      age,
+      team,
+      position,
+      number,
+      inactive,
+      aboutMe,
+      userImage,
+    } = req.body;
+    const updatedUser = await User.findByIdAndUpdate(id, {
+      firstname,
+      lastname,
+      username,
+      email,
+      terms,
+      createdAt,
+      height,
+      age,
+      team,
+      position,
+      number,
+      inactive,
+      aboutMe,
+      userImage,
+    });
+    const refreshedUser = await User.findById(id);
+    res.status(200).json(refreshedUser);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
 module.exports = {
   getAllUser,
   getSingleUser,
   createUser,
   loginUser,
   deleteUser,
+  updateUser,
 };
