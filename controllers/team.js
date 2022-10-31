@@ -63,4 +63,21 @@ const updateTeam = async (req, res) => {
     res.status(500).send(error.message);
   }
 };
-module.exports = { getAllTeams, getSingleTeam, createTeam, updateTeam };
+// DELETE Team
+const deleteTeam = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const team = await Team.findByIdAndDelete(id);
+    res.status(200).send("Team wurde erfolgreich gelöscht");
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
+module.exports = {
+  getAllTeams,
+  getSingleTeam,
+  createTeam,
+  updateTeam,
+  deleteTeam,
+};
