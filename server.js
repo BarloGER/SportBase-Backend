@@ -13,6 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 db();
+app.disable("etag");
 // STARTSEITE
 app.get("/", (req, res) => {
   res.send("Willkommen zu unserem Abschlussprojekt");
