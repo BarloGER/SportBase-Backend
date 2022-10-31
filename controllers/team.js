@@ -44,4 +44,24 @@ const createTeam = async (req, res) => {
     console.log(err.message);
   }
 };
-module.exports = { getAllTeams, getSingleTeam, createTeam };
+const updateTeam = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { team, sport, trainer, memberCount, member, logoUrl, isActive } =
+      req.body;
+    const updatedTeam = await Team.findByIdAndUpdate(id, {
+      team,
+      sport,
+      trainer,
+      memberCount,
+      member,
+      logoUrl,
+      isActive,
+    });
+    const refreshedTeam = await Team.findById(id);
+    res.status(200).json(refreshedTeam);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+module.exports = { getAllTeams, getSingleTeam, createTeam, updateTeam };

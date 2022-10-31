@@ -54,4 +54,35 @@ const createEvent = async (req, res) => {
     res.status(500).send(err.message);
   }
 };
-module.exports = { getAllEvents, getSingleEvent, createEvent };
+const updateEvent = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const {
+      title,
+      startDate,
+      location,
+      endDate,
+      opponent,
+      activePlayers,
+      reservePlayers,
+      lineUp,
+      eventImage,
+    } = req.body;
+    const updatedEvent = await Event.findByIdAndUpdate(id, {
+      title,
+      startDate,
+      location,
+      endDate,
+      opponent,
+      activePlayers,
+      reservePlayers,
+      lineUp,
+      eventImage,
+    });
+    const refreshedEvent = await Event.findById(id);
+    res.status(200).json(refreshedEvent);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+module.exports = { getAllEvents, getSingleEvent, createEvent, updateEvent };
