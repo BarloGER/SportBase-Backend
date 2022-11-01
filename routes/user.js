@@ -18,7 +18,7 @@ userRouter.route("/login").post(loginUser);
 
 // DELTE USER
 
-userRouter.route("/:id").delete(deleteUser).put(updateUser);
+userRouter.route("/:id").delete(deleteUser).put(updateUser).get(getSingleUser);
 
 userRouter.route("/checkToken").get(jwtToken, getSingleUser);
 module.exports = userRouter;
