@@ -86,6 +86,17 @@ const getSingleUser = async (req, res) => {
     res.status(500).send(err.message);
   }
 };
+
+const findUser = async (req, res) => {
+  try {
+    const { id } = req;
+    const user = await User.findById(id);
+    if (!user) return res.send("User not found");
+    return res.json(user);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+};
 // DELETE USER
 const deleteUser = async (req, res) => {
   try {
@@ -148,4 +159,5 @@ module.exports = {
   loginUser,
   deleteUser,
   updateUser,
+  findUser,
 };
