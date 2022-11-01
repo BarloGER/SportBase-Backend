@@ -89,7 +89,7 @@ const getSingleUser = async (req, res) => {
 
 const findUser = async (req, res) => {
   try {
-    const { id } = req;
+    const { id } = req.params;
     const user = await User.findById(id);
     if (!user) return res.send("User not found");
     return res.json(user);
