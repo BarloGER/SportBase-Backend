@@ -87,16 +87,16 @@ const getSingleUser = async (req, res) => {
   }
 };
 
-const findUser = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const founduser = await User.findById(id);
-    if (!founduser) return res.send("User not found");
-    return res.json(founduser);
-  } catch (err) {
-    res.status(500).send(err.message);
-  }
-};
+// const findUser = async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const founduser = await User.findById(id);
+//     if (!founduser) return res.send("User not found");
+//     return res.json(founduser);
+//   } catch (err) {
+//     res.status(500).send(err.message);
+//   }
+// };
 // DELETE USER
 const deleteUser = async (req, res) => {
   try {
