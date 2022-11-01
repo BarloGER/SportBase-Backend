@@ -159,5 +159,5 @@ module.exports = {
   loginUser,
   deleteUser,
   updateUser,
-  findUser,
+  // findUser,
 };
