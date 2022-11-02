@@ -8,7 +8,7 @@ const {
   loginUser,
   deleteUser,
   updateUser,
-  // findUser,
+  findUser,
 } = require("../controllers/user");
 
 const userRouter = express.Router();
@@ -19,7 +19,7 @@ userRouter.route("/login").post(loginUser);
 
 // DELTE USER
 
-userRouter.route("/:id").delete(deleteUser).put(updateUser);
+userRouter.route("/:id").delete(deleteUser).put(updateUser).get(findUser);
 
 userRouter.route("/checkToken").get(jwtToken, getSingleUser);
 module.exports = userRouter;
