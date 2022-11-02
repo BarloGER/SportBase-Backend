@@ -23,6 +23,7 @@ const createUser = async (req, res) => {
     terms,
     createdAt,
     height,
+    weight,
     age,
     team,
     position,
@@ -45,6 +46,7 @@ const createUser = async (req, res) => {
       terms,
       createdAt,
       height,
+      weight,
       age,
       team,
       position,
@@ -97,6 +99,7 @@ const getSingleUser = async (req, res) => {
 //     res.status(500).send(err.message);
 //   }
 // };
+
 // DELETE USER
 const deleteUser = async (req, res) => {
   try {
@@ -121,6 +124,7 @@ const updateUser = async (req, res) => {
       terms,
       createdAt,
       height,
+      weight,
       age,
       team,
       position,
@@ -137,6 +141,7 @@ const updateUser = async (req, res) => {
       terms,
       createdAt,
       height,
+      weight,
       age,
       team,
       position,
