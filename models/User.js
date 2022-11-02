@@ -9,6 +9,7 @@ const User = new Schema({
   password: { type: String, required: true, select: false },
   terms: { type: Boolean, required: true },
   height: { type: Number, default: null },
+  weight: { type: Number, default: null },
   coach: { type: Boolean, default: false },
   player: { type: Boolean, default: true },
   betreuer: { type: Boolean, default: false },
